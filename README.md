@@ -1,6 +1,6 @@
 # 影应图谱 · RespGraph-TNBC
 
-三阴性乳腺癌治疗变化与患者关系的交互可视化。此目录包含2026-10-02修改后的完整静态网页。
+三阴性乳腺癌治疗变化与患者关系的交互可视化。此目录包含2026-10-03修改后的完整静态网页。
 
 ## 浏览与编辑
 
@@ -10,6 +10,9 @@
 - graph3d.js：三维患者关系图
 - explain.js：SHAP及注意力图表
 - discovery.js / discovery.css：真实案例、预测排序、实验比较和八幕演示
+- narrative.js / narrative.css：背景时间线、真实病例变化和四步研究故事
+- stability.js：队列均值/波动视图与逐患者实际分布
+- attention-flow.js：真实注意力权重的信息流图
 - style.css：全站样式
 - data.js / data.json：已授权公开的38例去标识展示结果
 - explain-data.js / explain-data.json：外部队列解释结果
