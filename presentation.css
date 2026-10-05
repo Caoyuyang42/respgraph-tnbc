@@ -29,5 +29,5 @@ header{background:#080d15b8;border-color:#ffffff0a}
 .discovery-card{border-color:#ffffff0a;background:#111d29}
 .clinical-policy{border:0;background:#10212f}
 .clinical-features>div,.console-neighbors button{border-color:#ffffff0b}
-.background-console>div:first-child .instrument-panel:first-child,.patient-summary{background-image:linear-gradient(120deg,#101925e8,#0b111baa),url('scan-field.svg');background-position:center;background-size:cover}.clinical-policy,.story-flow .panel{background-image:linear-gradient(125deg,#111b26e6,#0a1420c9),repeating-linear-gradient(0deg,transparent 0 29px,#83bcd122 30px)}.explain-section,.console-bottom .instrument-panel{background-image:linear-gradient(130deg,#101925ef,#0b111be0),radial-gradient(circle,#90cce5 1px,transparent 1px);background-size:auto,24px 24px}.brand{font-size:22px;letter-spacing:1px}.brand small{font-family:Inter,'Microsoft YaHei',sans-serif;letter-spacing:1px;font-size:9px}
+.brand{font-size:22px;letter-spacing:1px}.brand small{font-family:Inter,'Microsoft YaHei',sans-serif;letter-spacing:1px;font-size:9px}
 @media(max-width:820px){.overview-title h1,.page-intro h1{font-size:28px}}@media(prefers-reduced-motion:reduce){.workspace:after{display:none}}
