@@ -24,7 +24,7 @@ const scenes=[
 {page:'patient',title:'04 / 完整病例：检查与相似患者',text:'比较EXT-011与EXT-027，观察四项检查变化。相似度来自完整模型输入。',patient:pair.a,compare:pair.b,target:'.patient-layout'},
 {page:'patient',title:'05 / 从病例轨迹进入预测解释',text:'EXT-004原始概率48.6%。SHAP分解当前输入相对参考值的贡献。',patient:near,compare:null,explain:'local',target:'.explain-section'},
 {page:'patient',title:'06 / 跨患者注意力怎样分配',text:'切换注意力流程与矩阵，查看当前患者对全队列的真实关注权重。',patient:near,explain:'flow',target:'.explain-section'},
-{page:'evidence',title:'07 / 核对模型表现与关系价值',text:'外部AUC0.8304。切换相似图、随机连线、仅自身，查看结构对预测的影响；再核对真实结果与概率波动。',experiment:'similarity',validation:true,target:'.structure-review'},
+{page:'evidence',title:'07 / 核对模型表现与关系价值',text:'外部AUC0.8304。切换相似图、随机连线、仅自身，查看结构对预测的影响；再核对真实结果与概率波动。',experiment:'similarity',validation:true,target:'.evidence-primary'},
 {page:'sandbox',title:'08 / 队列变化后的关系与预测',text:'移除5位患者，展示33人的实际预计算结果。本地版支持增加无标签患者并运行模型。',preset:3,target:'.cohort-camera'},
 {page:'boundary',title:'09 / 作品用途与技术贡献',text:'以纵向MRI、患者关系、模型解释和外部验证支持医生的疗效评估研究。',target:'.page-intro'}];
 function casewalk(state){const p=pts[state.patient];return `<section class="casewalk"><div class="casewalk-title"><h2>病例演示：从检查到结果核对</h2><span class="badge">当前 ${p.id}</span></div><p>沿着同一位患者，查看真实影像、检查变化、相似病例、指标贡献和实际结局。</p><div class="casewalk-steps">${['单人检查','双人对照','局部SHAP','注意力机制','核对结局'].map((t,j)=>`<button data-case-step="${j}"><span>0${j+1}</span>${t}</button>`).join('')}</div><div class="casewalk-note"><b>当前结果：</b>预测pCR ${pct(p.p)}${state.validation?' · 实际'+(p.label?'pCR':'non-pCR')+' · 阈值0.50下'+((p.p>=.5)===!!p.label?'预测相符':'预测与结局不一致'):' · 实际结局可在第05步显示'}。</div></section>`;}
