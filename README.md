@@ -1,38 +1,52 @@
-# 影应图谱 · RespGraph-TNBC
+# 影见疗效
 
-三阴性乳腺癌治疗变化与患者关系的交互可视化。此目录包含2026-10-03修改后的完整静态网页。
+**三阴性乳腺癌治疗响应预测与可视化分析平台**
 
-## 浏览与编辑
+纵向MRI、患者相似关系、三维分割形态、疗效预测与模型解释的交互作品。英文技术名 RespGraph-TNBC。
 
-直接打开index.html可离线展示。无需Node构建、ChatGPT账号或API密钥。
+## 打开网页
 
-- app.js：七页内容与核心交互
-- graph3d.js：三维患者关系图
-- explain.js：SHAP及注意力图表
-- discovery.js / discovery.css：真实案例、预测排序、实验比较和八幕演示
-- narrative.js / narrative.css：背景时间线、真实病例变化和四步研究故事
-- stability.js：队列均值/波动视图与逐患者实际分布
-- attention-flow.js：真实注意力权重的信息流图
-- style.css：全站样式
-- data.js / data.json：已授权公开的38例去标识展示结果
-- explain-data.js / explain-data.json：外部队列解释结果
+在线展示：https://caoyuyang42.github.io/respgraph-tnbc/
 
-仅修改外观和文案，无需重新运行模型。修改数值应重新计算导出，不在前端伪造结果。
+解压后可直接打开index.html离线展示，也可双击“启动网页.bat”在本机浏览器预览。启动脚本需要已安装Python。网页无需ChatGPT登录、API密钥或前端依赖安装。
 
-## GitHub Pages发布
+## 修改网页
 
-新建公开仓库respgraph-tnbc，将本目录内文件上传至main分支根目录。
-在Settings → Pages → Build and deployment选择Deploy from a branch，分支main，目录/(root)，保存。
-.nojekyll使GitHub直接发布静态文件。等待Pages部署成功，以设置页显示的地址为准。
-以后提交网页修改，GitHub会自动更新展示。
+1. 使用VS Code等编辑器修改下列源文件。
+2. 双击“重新生成网页.bat”，或在本目录执行 `python build_frontend.py`。
+3. 刷新网页。在线发布时，将完整目录内的文件提交到GitHub仓库main分支。
 
-## 数据与模型
+| 要修改的部分 | 文件 |
+| --- | --- |
+| 字号、留白、各屏幕排版 | density.css（优先修改） |
+| 网页标题、导航、加载时的内容 | index.template.html |
+| 七页主要内容、文案与交互 | app.js |
+| 疾病背景与研究总览 | overview.js、overview.css |
+| 患者探索、证据实验室的内容重组 | refinement.js、refinement.css |
+| 模型架构的四个交互视图 | architecture.js |
+| 三维患者关系图 | graph3d.js |
+| SHAP、注意力图表 | explain.js、attention-flow.js |
+| MRI切片与分割形态 | mri-viewer.js、mri-viewer.css |
+| 队列稳定性图表 | stability.js |
+| 演示路径与案例入口 | discovery.js、discovery.css |
+| 基础样式 | style.css |
+| 初始加载、失败重试、按需加载 | bootstrap.js |
+| 完整展示数据、外部解释结果 | data.json、explain-data.json |
 
-I-SPY 1外部展示队列38例；模型开发使用I-SPY 2。概率为十折模型原始输出均值。
-公开网站展示预计算结果；任意新增/删减患者的实时计算使用独立本地服务。
-本仓库不包含模型权重、原始患者标识、原始数据文件、旧Sites账号配置或任何密钥。
-在线源码和展示数据可被访问者下载。GitHub Pages不依赖ChatGPT，但各地网络可达性需实测。
+site-runtime.js、site.css、data-core.js、asset-map.js、stability-data.js、cohort-data.js、attention-detail.js和index.html由生成脚本输出。直接修改这些文件，会在下次生成时被覆盖。
+
+## 加载策略
+
+首次载入核心患者数据、SHAP贡献和平均注意力。打开证据实验室时加载重复队列结果，打开沙盒时加载队列示例；选择单个模型注意力时加载完整权重矩阵。构图相同的边在运行时复用，完整数据下载保留原始结构。所有预测概率及图表数值均未重新计算或校准。
+
+MRI和三维分割资源按患者载入；论文架构原图在研究方法页展开查看。网页保留自然滚动。
+
+## 发布与模型
+
+GitHub Settings → Pages → Deploy from a branch，选择main与根目录。.nojekyll使GitHub直接发布静态文件。
+
+在线展示使用已授权公开的38例去标识数据和预计算结果。任意新增、删减队列的真实推理使用本机服务；静态网页可独立展示预计算案例。开发队列I-SPY 2，外部验证队列I-SPY 1。源码包中没有模型权重、原始NIfTI、真实患者编号或密钥。
 
 ## 制作说明
 
-ChatGPT/Codex辅助设计、代码实现和文档整理。正式参赛请结合团队真实贡献与第三方数据许可完善披露记录。
+ChatGPT/Codex辅助设计、代码实现和文档整理。论文架构原图由用户提供；网页架构视图依据论文图及GCN-Transformer3代码重绘，使用代码中的LayerNorm标注。视频和模型权重保留在本机。
