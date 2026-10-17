@@ -1,6 +1,6 @@
 # 影见疗效
 
-**三阴性乳腺癌治疗响应预测与可视化分析平台**
+**三阴性乳腺癌可视化管理平台 · 2026-10-17**
 
 纵向MRI、患者相似关系、三维分割形态、疗效预测与模型解释的交互作品。英文技术名 RespGraph-TNBC。
 
@@ -8,7 +8,35 @@
 
 在线展示：https://caoyuyang42.github.io/respgraph-tnbc/
 
-解压后可直接打开index.html离线展示，也可双击“启动网页.bat”在本机浏览器预览。启动脚本需要已安装Python。网页无需ChatGPT登录、API密钥或前端依赖安装。
+打开在线链接即可使用，无需登录或安装依赖。本地预览请解压后双击“启动网页.bat”，保留打开的窗口，通过 http://127.0.0.1:8788/ 访问。脚本用Python分发静态网页文件；预测计算由浏览器执行。
+
+七个主页面分别为疾病总览、模型总览、患者关系、个体分析、验证分析、患者管理、模型架构。每页顶部按钮切换该页的完整图表分区，返回按钮回到本页主视图。较窄窗口增加分区按钮；表格和稳定性矩阵按患者组翻页。图谱支持旋转、暂停、聚焦、搜索与双患者比较。导航和专业名词支持悬停释义。
+
+## 自行录入患者并预测
+
+1. 进入“患者管理 → 录入新患者”。
+2. 输入患者编号，选择8项早期/中期变化率、4类指标的三期检查值，或12项已处理模型特征。
+3. 病理结果可留空，模型计算不使用新患者标签。
+4. 点击“保存患者并预测pCR概率”。浏览器载入十个已训练模型，重新构建当前工作队列关系并计算原始概率均值，随后打开个人报告。
+5. 在“患者列表”勾选或取消多位患者，点击“计算当前队列”，可查看队列变化后的真实预测。
+
+模型参数约8.4 MB，第一次计算时按需下载；同一次打开网页期间复用已载入参数。采用原有训练权重、标准化参数和外部构图设置，没有重新训练或概率校准。浏览器版本已与Python模型对照验证。
+
+工作队列最多200人，包含初始38例与最多162条自定义记录。录入值、已排除的患者及最近预测结果保存在当前浏览器的localStorage中，不会自动同步到其他设备。请用“导出我的患者数据”备份或转移记录；清理浏览器网站数据会清除本地记录。
+
+## 批量导入与报告
+
+“工作队列”提供CSV/JSON导入与录入模板下载。模板的 `input_mode` 支持：
+
+| 口径 | 字段 |
+| --- | --- |
+| `changes` | `patient_id`、`FTV_pch_T0_T1`、`FTV_pch_T0_T2`，以及LD、BPE、Sphericity的对应六项变化率，单位为百分比 |
+| `measurements` | `patient_id` 与 `FTV_T0/T1/T2`、`LD_T0/T1/T2`、`BPE_T0/T1/T2`、`Sphericity_T0/T1/T2` |
+| `features` | `patient_id` 与 input-schema.js 中列出的12项已处理特征 |
+
+可选 `pCR` 或 `label` 列用0、1或留空记录结局。JSON可使用记录数组，字段规则与CSV一致。已有患者编号需通过“编辑”更新。
+
+“个性化报告”包括概率、输入变化、相似患者与十模型输出。可下载独立HTML文件，或点击“打印 / PDF”保存为PDF。参考38例有已计算的患者级SHAP；自行录入患者可以在“输入敏感性”中计算各指标变化对预测的影响。注意力页显示当前队列的实际模型权重。
 
 ## 修改网页
 
@@ -18,35 +46,33 @@
 
 | 要修改的部分 | 文件 |
 | --- | --- |
-| 字号、留白、各屏幕排版 | density.css（优先修改） |
+| 配色、背景、字号、各屏幕排版 | dashboard.css |
 | 网页标题、导航、加载时的内容 | index.template.html |
-| 七页主要内容、文案与交互 | app.js |
-| 疾病背景与研究总览 | overview.js、overview.css |
-| 患者探索、证据实验室的内容重组 | refinement.js、refinement.css |
+| 七页主要内容、文案、患者管理、报告 | dashboard.js |
+| ROC、SHAP、轨迹与其他图表 | dashboard-charts.js |
+| 导航和专业术语释义 | dashboard-help.js |
 | 模型架构的四个交互视图 | architecture.js |
 | 三维患者关系图 | graph3d.js |
-| SHAP、注意力图表 | explain.js、attention-flow.js |
+| 输入换算与模型线程调用 | browser-inference.js、input-schema.js |
 | MRI切片与分割形态 | mri-viewer.js、mri-viewer.css |
-| 队列稳定性图表 | stability.js |
-| 演示路径与案例入口 | discovery.js、discovery.css |
-| 基础样式 | style.css |
+| GCN–Transformer浏览器推理 | model-worker.js、browser-model/ |
 | 初始加载、失败重试、按需加载 | bootstrap.js |
 | 完整展示数据、外部解释结果 | data.json、explain-data.json |
 
-site-runtime.js、site.css、data-core.js、asset-map.js、stability-data.js、cohort-data.js、attention-detail.js和index.html由生成脚本输出。直接修改这些文件，会在下次生成时被覆盖。
+dashboard-runtime.js、dashboard-style.css、data-core.js、asset-map.js、stability-data.js、cohort-data.js、attention-detail.js和index.html由生成脚本输出。直接修改这些文件，会在下次生成时被覆盖。旧版app.js、site-runtime.js、site.css等保留作兼容参考，新页面使用dashboard系列文件。
 
 ## 加载策略
 
-首次载入核心患者数据、SHAP贡献和平均注意力。打开证据实验室时加载重复队列结果，打开沙盒时加载队列示例；选择单个模型注意力时加载完整权重矩阵。构图相同的边在运行时复用，完整数据下载保留原始结构。所有预测概率及图表数值均未重新计算或校准。
+首次载入核心患者数据、SHAP贡献和平均注意力。打开“队列稳定性”时加载重复实验结果；选择单个模型注意力时加载完整权重矩阵。构图相同的边在运行时复用。初始展示数据沿用原始概率，自定义工作队列按当前成员重新推理。
 
-MRI和三维分割资源按患者载入；论文架构原图在研究方法页展开查看。网页保留自然滚动。
+MRI和三维分割资源按患者载入；论文架构原图在模型架构页展开查看。页面按屏幕高度排版，完整信息通过页内分区按钮切换。
 
 ## 发布与模型
 
 GitHub Settings → Pages → Deploy from a branch，选择main与根目录。.nojekyll使GitHub直接发布静态文件。
 
-在线展示使用已授权公开的38例去标识数据和预计算结果。任意新增、删减队列的真实推理使用本机服务；静态网页可独立展示预计算案例。开发队列I-SPY 2，外部验证队列I-SPY 1。源码包中没有模型权重、原始NIfTI、真实患者编号或密钥。
+在线展示使用已授权公开的38例去标识数据、MRI展示资源和预计算结果。任意新增、删减队列的真实推理由浏览器计算，无需后端服务。开发队列I-SPY 2，外部验证队列I-SPY 1。源码包包含网页推理参数，访问者可以下载这些参数；不包含原始PyTorch检查点、原始NIfTI、原始患者编号、对应表或密钥。
 
 ## 制作说明
 
-ChatGPT/Codex辅助设计、代码实现和文档整理。论文架构原图由用户提供；网页架构视图依据论文图及GCN-Transformer3代码重绘，使用代码中的LayerNorm标注。视频和模型权重保留在本机。
+ChatGPT/Codex辅助设计、代码实现和文档整理。用户提供论文架构原图与研究模型；架构视图按实际模型的256→128→2预测头、四头注意力及外部相似度0.8+Top-2构图设置绘制。

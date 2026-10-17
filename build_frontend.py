@@ -30,10 +30,10 @@ def build():
     assets['stability'] = emit('stability-data.js', '('+dump(runs)+').forEach((runs,i)=>window.RESPGRAPH_DATA.robustness[i].runs=runs);\n')
     assets['cohort'] = emit('cohort-data.js', 'window.RESPGRAPH_DATA.cohort_presets='+dump(presets)+';\n')
     assets['attention'] = emit('attention-detail.js', 'window.RESPGRAPH_EXPLAIN.attention.models='+dump(heads)+';\n')
-    js = ['graph3d.js','explain.js','discovery.js','stability.js','attention-flow.js','overview.js','scenes.js','mri-data.js','mri-viewer.js','refinement.js','architecture.js','app.js']
-    assets['runtime'] = emit('site-runtime.js', '\n'.join('// SOURCE: '+name+'\n'+(PUBLIC/name).read_text(encoding='utf-8') for name in js))
-    css = ['style.css','discovery.css','narrative.css','overview.css','presentation.css','scenes.css','mri-viewer.css','refinement.css','density.css']
-    assets['styles'] = emit('site.css', '\n'.join('/* SOURCE: '+name+' */\n'+(PUBLIC/name).read_text(encoding='utf-8') for name in css))
+    js = ['graph3d.js','mri-data.js','mri-viewer.js','architecture.js','input-schema.js','browser-inference.js','dashboard-charts.js','dashboard-help.js','dashboard.js']
+    assets['runtime'] = emit('dashboard-runtime.js', '\n'.join('// SOURCE: '+name+'\n'+(PUBLIC/name).read_text(encoding='utf-8') for name in js))
+    css = ['mri-viewer.css','dashboard.css']
+    assets['styles'] = emit('dashboard-style.css', '\n'.join('/* SOURCE: '+name+' */\n'+(PUBLIC/name).read_text(encoding='utf-8') for name in css))
     emit('asset-map.js', 'window.RESPGRAPH_ASSETS='+dump(assets)+';\n')
     template = (APP/'index.template.html').read_text(encoding='utf-8')
     for key,value in assets.items():
@@ -48,6 +48,7 @@ def build():
         for f in PUBLIC.iterdir():
             if f.is_file() and f.suffix in {'.js','.css','.html','.md','.svg','.json'}:
                 shutil.copy2(f, local/f.name)
+        shutil.copytree(PUBLIC/'browser-model',local/'browser-model',dirs_exist_ok=True)
         shutil.copy2(__file__,PUBLIC/'build_frontend.py')
         shutil.copy2(APP/'index.template.html',PUBLIC/'index.template.html')
     print(json.dumps({'assets':assets,'initial_bytes':sum(assets[k]['bytes'] for k in ['core','runtime','styles'])},ensure_ascii=False))
