@@ -1,0 +1,125 @@
+/* Compact toolbar and panel proportions, layered over the shared dashboard theme. */
+body{background:#030b18}
+body:before{z-index:0;opacity:1;background:url('dashboard-backdrop.svg') center/cover no-repeat}
+#app{position:relative;z-index:1}
+.sidebar{background:linear-gradient(180deg,#091a30ed,#040e20ef)}
+header{height:52px;background:linear-gradient(90deg,#071526f2,#103250b8,#061526ed)}
+header:after{background:linear-gradient(90deg,transparent,#44a8e4c9,transparent);box-shadow:0 0 13px #3d9ae560}
+main{padding:9px 20px 10px;gap:8px}
+.d-page-toolbar{display:flex;align-items:center;gap:12px;flex:none;min-height:44px;min-width:0;border-bottom:1px solid #2b5a7b80;padding-bottom:5px}
+.d-page-heading{min-height:0;gap:0;flex:none}
+.d-page-heading>div{display:flex;gap:11px;align-items:center}
+.d-page-heading>div>span{display:inline;font-size:12px;letter-spacing:1px;padding-right:11px;border-right:1px solid #3c6f91;line-height:1.2;color:#75d2f4}
+.d-page-heading h1{font-size:clamp(20px,1.55vw,29px);line-height:1.15;letter-spacing:.5px;white-space:nowrap}
+.d-view-nav{margin-left:auto;gap:5px;min-height:0;flex-wrap:nowrap;flex:none}
+.d-view-nav button{font-size:13px;padding:6px 11px;white-space:nowrap}
+.d-view-nav .d-back{font-size:11px;margin-left:0;padding:5px 6px}
+.d-experiment-controls{flex:none;gap:5px;min-height:0;border-left:1px solid #315977;padding-left:12px;flex-wrap:nowrap}
+.d-experiment-controls button{font-size:12px;padding:6px 9px;white-space:nowrap}
+.d-statbar{height:70px;gap:11px}
+.d-statbar>.d-stat{padding:8px 16px;background:linear-gradient(110deg,#143752df,#081d34d6)}
+.d-statbar>.d-stat strong{font-size:34px}
+.d-statbar>.d-stat>span{font-size:13px}
+.d-statbar>.d-stat>small{font-size:10px}
+.d-panel{background:linear-gradient(140deg,#0b2038e0,#05142bdb);border-color:#356387;box-shadow:inset 0 0 28px #126aad0b,0 0 0 1px #02091470}
+.d-panel:before,.d-panel:after{border-color:#91c9eb}
+.d-panel-head{border-color:#325a78}
+.d-panel-head h2{color:#d4edff}
+.d-view-content{gap:10px}
+
+/* SHAP is the principal figure; the four supporting panels occupy the right rail. */
+@media(min-width:1050px) and (min-height:650px){
+ .story-insights{grid-template-columns:minmax(0,1.45fr) minmax(0,1.1fr) minmax(0,1fr);grid-template-rows:minmax(0,1.08fr) minmax(0,1fr)}
+ .story-insights>.d-panel:nth-child(1){grid-column:1;grid-row:1/3}
+ .story-insights>.d-panel:nth-child(2){grid-column:2;grid-row:1}
+ .story-insights>.d-panel:nth-child(3){grid-column:2;grid-row:2}
+ .story-insights>.d-panel:nth-child(4){grid-column:3;grid-row:1}
+ .story-insights>.d-panel:nth-child(5){grid-column:3;grid-row:2}
+ .calibration-screen{grid-template-columns:minmax(0,1.05fr) minmax(0,1.2fr) minmax(0,.85fr);grid-template-rows:minmax(0,.95fr) minmax(0,1.05fr)}
+ .calibration-screen>.d-panel:nth-child(1){grid-column:1;grid-row:1/3}
+ .calibration-screen>.d-panel:nth-child(2){grid-column:2;grid-row:1}
+ .calibration-screen>.d-panel:nth-child(3){grid-column:3;grid-row:1}
+ .calibration-screen>.d-panel:nth-child(4){grid-column:2/4;grid-row:2}
+}
+
+/* Reserve independent tracks for matrix labels, cell values and summary metrics. */
+.d-panel-body:has(>.d-confusion){gap:6px}
+.d-confusion{container-type:size;flex:1 1 0;min-height:0;grid-template-columns:minmax(57px,.42fr) minmax(0,1fr) minmax(0,1fr);grid-template-rows:23px repeat(2,minmax(0,1fr));gap:6px;line-height:1.1;font-size:12px}
+.d-confusion>div{min-height:0;min-width:0;overflow:hidden}
+.d-confusion b{font-size:clamp(18px,22cqh,46px);line-height:1;font-weight:500}
+.d-confusion small{font-size:10px;line-height:1.1;margin-top:3px}
+.d-confusion .cm-corner{font-size:9px;line-height:1.1}
+.cm-summary{flex:none;min-height:37px;gap:3px 10px;margin:4px 0 0;align-content:center}
+.cm-summary span{font-size:11px;line-height:1.3;align-items:center}
+.cm-summary b{font-size:15px;line-height:1.2}
+.cm-summary+.d-note{font-size:11px;line-height:1.3;white-space:nowrap}
+.calibration-screen .d-bin-table{grid-template-rows:24px repeat(4,minmax(0,1fr));gap:0}
+.calibration-screen .d-bin-table>div{font-size:12px;gap:6px}
+.calibration-screen .d-bin-table strong{font-size:21px}
+.calibration-screen .d-mini-metrics .d-stat{padding:5px 0 0}
+.calibration-screen .d-mini-metrics .d-stat strong{font-size:26px}
+.calibration-screen .d-mini-metrics .d-stat>span{font-size:12px}
+.calibration-screen .d-mini-metrics .d-stat>small{font-size:10px}
+.probability-distribution .d-panel-head{gap:4px}
+.probability-distribution .d-panel-head>span{font-size:9px}
+.probability-distribution .d-panel-head h2{font-size:17px}
+.probability-distribution .d-legend{font-size:10px;gap:9px}
+.story-insights .d-ablation{display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:9px;align-content:stretch;justify-content:stretch}
+.story-insights .d-ablation button{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto 5px;align-content:center;align-items:center;gap:8px 12px;padding:9px 11px;background:#102c4359;border:1px solid #315b7666;border-radius:4px;min-height:0}
+.story-insights .d-ablation button>span{font-size:13px;grid-column:1;grid-row:1}
+.story-insights .d-ablation button>b{font-size:clamp(19px,1.3vw,24px);grid-column:2;grid-row:1;line-height:1.1}
+.story-insights .d-ablation button>i{grid-column:1/3;grid-row:2;width:100%;height:5px}
+
+@media(max-width:1550px){
+ .d-page-toolbar{gap:9px}
+ .d-view-nav button{font-size:12px;padding:6px 9px}
+ .d-view-nav .d-back{font-size:10px;padding:5px 4px}
+ .d-experiment-controls{padding-left:9px}
+ .d-experiment-controls button{font-size:11px;padding:6px 7px}
+ .d-statbar{height:61px;gap:9px}
+ .d-statbar>.d-stat strong{font-size:29px}
+ .d-statbar>.d-stat>span{font-size:12px}
+ .d-statbar>.d-stat>small{font-size:9px}
+}
+@media(max-height:850px){
+ header{height:47px}
+ main{padding-top:7px;gap:7px}
+ .d-page-toolbar{min-height:39px;padding-bottom:4px}
+ .d-panel-head{padding-bottom:8px;margin-bottom:8px}
+ .calibration-screen .d-mini-metrics .d-stat strong{font-size:22px}
+ .calibration-screen .d-bin-table strong{font-size:18px}
+ .calibration-screen .d-mini-metrics .d-stat>small{font-size:9px}
+}
+@media(max-width:1200px) and (min-width:1050px){
+ .d-page-heading h1{font-size:18px}
+ .d-view-nav button{font-size:11px;padding:6px 7px}
+ .d-experiment-controls button{font-size:10px;padding:6px}
+ .d-page-toolbar{gap:6px}
+ .d-experiment-controls{padding-left:6px}
+}
+@media(max-width:1049px), (max-height:649px){
+ .d-page-toolbar{flex-wrap:wrap;gap:6px;padding-bottom:6px}
+ .d-page-heading{margin-right:auto}
+ .d-view-nav{margin-left:0;flex-wrap:wrap}
+ .d-page-toolbar .d-experiment-controls{border:0;padding-left:0;margin-left:auto}
+ .d-paged-grid.story-insights,.d-paged-grid.calibration-screen{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr)}
+ .d-confusion{font-size:14px;grid-template-columns:80px minmax(0,1fr) minmax(0,1fr)}
+ .d-confusion b{font-size:clamp(25px,22cqh,54px)}
+ .d-paged-grid .cm-summary span{font-size:13px}
+ .d-paged-grid .cm-summary b{font-size:18px}
+}
+@media(max-width:700px){
+ header{height:39px}
+ main{padding:7px 10px 8px}
+ .d-page-toolbar{min-height:32px}
+ .d-page-heading h1{font-size:18px;letter-spacing:0}
+ .d-page-heading>div>span{font-size:10px;padding-right:7px}
+ .d-page-heading>div{gap:7px}
+ .d-view-nav button{font-size:10px;padding:5px 7px}
+ .d-statbar{height:56px;gap:5px}
+ .d-statbar>.d-stat{padding:6px}
+ .d-statbar>.d-stat strong{font-size:21px}
+ .d-statbar>.d-stat>span{font-size:9px}
+ .d-paged-grid .d-bin-table strong{font-size:22px}
+ .d-paged-grid .probability-distribution .d-legend{font-size:12px}
+}

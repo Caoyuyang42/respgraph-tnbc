@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+ <defs>
+  <radialGradient id="nebula"><stop stop-color="#1265a1" stop-opacity=".4"/><stop offset=".44" stop-color="#10354e" stop-opacity=".2"/><stop offset="1" stop-color="#020813" stop-opacity="0"/></radialGradient>
+  <radialGradient id="star"><stop stop-color="#e3f7ff"/><stop offset=".15" stop-color="#72cbff" stop-opacity=".85"/><stop offset="1" stop-color="#4c9bff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="floor" x2="0" y2="1"><stop stop-color="#30a8ed" stop-opacity="0"/><stop offset=".65" stop-color="#30a8ed" stop-opacity=".2"/><stop offset="1" stop-color="#30a8ed" stop-opacity=".05"/></linearGradient>
+  <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0V72" stroke="#427cb3" stroke-opacity=".15" fill="none"/><path d="M34 36h4m-2-2v4" stroke="#79aeda" stroke-opacity=".26" stroke-width=".8"/></pattern>
+ </defs>
+ <ellipse cx="1080" cy="420" rx="1100" ry="780" fill="url(#nebula)"/>
+ <path d="M0 78H1920M190 0V1080M0 1014H1920" stroke="#219dde" stroke-opacity=".2"/>
+ <rect x="190" y="80" width="1730" height="1000" fill="url(#grid)"/>
+ <g fill="none" stroke="#4e9ee2" stroke-opacity=".19" stroke-width="1">
+  <path d="M205 188h58l38-38h132l36 36h150m705-43h163l43 43h140l53-53h72"/>
+  <path d="M191 809h61l28-28h57l35 35h84m1464-279h-49l-34-34h-85l-39 39h-103"/>
+  <path d="M1268 1080l-188-310m410 310l-360-310m670 310l-620-310M752 1080l280-310M456 1080l522-310M190 1021l736-251M190 886l671-116M190 780h1730M190 824h1730M190 888h1730M190 978h1730" stroke="url(#floor)"/>
+ </g>
+ <g stroke="#7cb8dc" stroke-opacity=".21" fill="none"><path d="M245 283l102 66 126-43 86 98m801-162 109 61 130-49 171 102m-638 613 100-51 148 47 127-92"/><circle cx="1210" cy="488" r="335" stroke-dasharray="1 16" stroke-opacity=".12"/><circle cx="1210" cy="488" r="363" stroke-dasharray="40 220" stroke-opacity=".12"/></g>
+ <g fill="url(#star)"><circle cx="218" cy="145" r="16"/><circle cx="1820" cy="219" r="19"/><circle cx="320" cy="526" r="13"/><circle cx="1660" cy="889" r="18"/><circle cx="787" cy="120" r="9"/><circle cx="1165" cy="795" r="9"/><circle cx="520" cy="963" r="13"/></g>
+ <g fill="#94c9ef" opacity=".56"><circle cx="245" cy="283" r="1.8"/><circle cx="347" cy="349" r="1.3"/><circle cx="473" cy="306" r="1.5"/><circle cx="559" cy="404" r="1.1"/><circle cx="1360" cy="242" r="1.8"/><circle cx="1469" cy="303" r="1.3"/><circle cx="1599" cy="254" r="1.7"/><circle cx="1770" cy="356" r="1.2"/><circle cx="1172" cy="918" r="1.5"/><circle cx="1420" cy="965" r="1.2"/><circle cx="1547" cy="873" r="1.6"/></g>
+</svg>
