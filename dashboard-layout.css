@@ -1,9 +1,9 @@
 /* Compact toolbar and panel proportions, layered over the shared dashboard theme. */
-body{background:#030b18}
-body:before{z-index:0;opacity:1;background:url('dashboard-backdrop.svg') center/cover no-repeat}
+body{background:#030d20}
+body:before{z-index:0;opacity:1;background:url('dashboard-backdrop-v3.svg') center/cover no-repeat}
 #app{position:relative;z-index:1}
-.sidebar{background:linear-gradient(180deg,#091a30ed,#040e20ef)}
-header{height:52px;background:linear-gradient(90deg,#071526f2,#103250b8,#061526ed)}
+.sidebar{background:radial-gradient(ellipse at 0 12%,#175f8c5c,transparent 70%),linear-gradient(180deg,#091b32e8,#040e20f2);box-shadow:5px 0 28px #02091970}
+header{height:52px;background:linear-gradient(100deg,#09203bdc,#174a73c4,#08213cdc)}
 header:after{background:linear-gradient(90deg,transparent,#44a8e4c9,transparent);box-shadow:0 0 13px #3d9ae560}
 main{padding:9px 20px 10px;gap:8px}
 .d-page-toolbar{display:flex;align-items:center;gap:12px;flex:none;min-height:44px;min-width:0;border-bottom:1px solid #2b5a7b80;padding-bottom:5px}
@@ -17,15 +17,16 @@ main{padding:9px 20px 10px;gap:8px}
 .d-experiment-controls{flex:none;gap:5px;min-height:0;border-left:1px solid #315977;padding-left:12px;flex-wrap:nowrap}
 .d-experiment-controls button{font-size:12px;padding:6px 9px;white-space:nowrap}
 .d-statbar{height:70px;gap:11px}
-.d-statbar>.d-stat{padding:8px 16px;background:linear-gradient(110deg,#143752df,#081d34d6)}
+.d-statbar>.d-stat{padding:8px 16px;background:linear-gradient(110deg,#165780b3,#092640d9);border-color:#4a8fb69c;box-shadow:inset 0 1px #9be0ff15}
 .d-statbar>.d-stat strong{font-size:34px}
 .d-statbar>.d-stat>span{font-size:13px}
 .d-statbar>.d-stat>small{font-size:10px}
-.d-panel{background:linear-gradient(140deg,#0b2038e0,#05142bdb);border-color:#356387;box-shadow:inset 0 0 28px #126aad0b,0 0 0 1px #02091470}
-.d-panel:before,.d-panel:after{border-color:#91c9eb}
-.d-panel-head{border-color:#325a78}
+.d-panel{background:radial-gradient(ellipse at 0 0,#2778af24,transparent 65%),linear-gradient(140deg,#0a2540a3,#041329d1);border-color:#4a88aeaa;box-shadow:inset 0 0 36px #1d8fd911,0 0 13px #168bc513,0 0 0 1px #02091470}
+.d-panel:before,.d-panel:after{border-color:#a5e4ff;filter:drop-shadow(0 0 3px #4aafff90)}
+.d-panel-head{border-color:#4a88aa8c;background:linear-gradient(90deg,#26679533,#0b263c00);box-shadow:0 5px 16px -12px #5bc7ff80}
 .d-panel-head h2{color:#d4edff}
 .d-view-content{gap:10px}
+.d-space{background:radial-gradient(ellipse at 50% 50%,#0d466359,transparent 72%),linear-gradient(145deg,#061c33c9,#031126d9);border-color:#3d81aa9c}
 
 /* SHAP is the principal figure; the four supporting panels occupy the right rail. */
 @media(min-width:1050px) and (min-height:650px){

@@ -1,6 +1,6 @@
 # 影见疗效
 
-**三阴性乳腺癌可视化管理平台 · 2026-10-17 · 紧凑布局修订版**
+**三阴性乳腺癌可视化管理平台 · 2026-10-17 · 增强背景修订版**
 
 纵向MRI、患者相似关系、三维分割形态、疗效预测与模型解释的交互作品。英文技术名 RespGraph-TNBC。
 
@@ -48,7 +48,7 @@
 | --- | --- |
 | 紧凑工具栏、图表分区、最新配色与排版 | dashboard-layout.css（优先修改） |
 | 基础排版与组件样式 | dashboard.css |
-| 深蓝网格、星点与背景光线 | dashboard-backdrop.svg |
+| 蓝色光域、透视网格、星点与页边光线 | dashboard-backdrop-v3.svg |
 | 网页标题、导航、加载时的内容 | index.template.html |
 | 七页主要内容、文案、患者管理、报告 | dashboard.js |
 | ROC、SHAP、轨迹与其他图表 | dashboard-charts.js |
