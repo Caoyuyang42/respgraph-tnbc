@@ -170,3 +170,43 @@ footer{height:25px;font-size:14.3px;letter-spacing:0}#help-tip{font-size:16.5px;
  .overview-screen .compact-curves .d-trajectories h3>b{font-size:18.7px}
  .overview-screen .compact-curves .d-trajectories h3>strong{font-size:22px}
 }
+
+/* A balanced result rail anchors the network instead of isolating its score at one edge. */
+.overview-screen .d-controls{align-items:center}.overview-screen #overview-orbit{margin-left:auto}
+.overview-screen .d-main-result{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:10px;margin-top:6px;padding-top:7px;text-align:center;min-height:68px}
+.d-focus-identity,.d-focus-score{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:0}
+.d-focus-identity span,.d-focus-score span{font-size:15.4px;color:#97bcd3;line-height:1.2}
+.d-focus-identity b{font-size:22px;font-weight:500;line-height:1.25}
+.d-focus-score strong{font-size:39.6px;font-weight:400;line-height:1;color:#7fd9f7;font-variant-numeric:tabular-nums}
+.overview-screen .d-main-result>button{justify-self:stretch;font-size:15.4px;padding:8px 5px}
+@media(min-width:1680px){.d-focus-identity b{font-size:26.4px}.d-focus-score strong{font-size:44px}.d-focus-identity span,.d-focus-score span{font-size:17.6px}}
+@media(min-width:1050px) and (min-height:650px){
+ .local-shap-screen{grid-template-rows:170px minmax(0,1fr)}
+ .local-shap-screen .d-sum{text-align:center;gap:8px}
+ .local-shap-screen>.d-panel:nth-child(2) .d-note{text-align:center}
+}
+@media(max-width:700px){
+ .overview-screen .d-controls{gap:5px}.overview-screen .d-controls button{padding:5px;font-size:14.3px}
+ .overview-screen #overview-orbit{margin-left:0}
+ .overview-screen .d-main-result{gap:5px}.d-focus-identity b{font-size:17.6px}.d-focus-score strong{font-size:30.8px}
+ .d-focus-identity span,.d-focus-score span{font-size:14.3px}
+ .overview-screen .d-main-result>button{font-size:14.3px}
+}
+
+@media(min-width:1050px) and (min-height:650px){
+ .entry-screen{grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr)}
+ .entry-matrix input{height:clamp(44px,6.5vh,70px)}
+ .entry-flow{align-content:stretch;grid-template-rows:repeat(4,minmax(0,1fr));gap:8px}
+ .entry-flow>div{border-bottom:1px solid #33627a88;background:linear-gradient(90deg,#1c567c26,transparent);padding:8px 10px;align-content:center}
+ .entry-flow i{width:42px;height:42px}
+}
+
+@media(min-width:1050px) and (min-height:650px){
+ .local-shap-screen{grid-template-rows:235px minmax(0,1fr)}
+ .local-shap-screen>.d-panel:nth-child(2) .d-sum{display:grid;grid-template-columns:1fr;align-content:stretch;gap:3px}
+ .local-shap-screen>.d-panel:nth-child(2) .d-sum>.d-stat{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;text-align:left;column-gap:12px}
+ .local-shap-screen>.d-panel:nth-child(2) .d-sum>.d-stat>strong{grid-column:2;grid-row:1;font-size:28.6px}
+ .local-shap-screen>.d-panel:nth-child(2) .d-sum>.d-stat>span{grid-column:1;grid-row:1;font-size:15.4px}
+ .local-shap-screen>.d-panel:nth-child(2) .d-sum>span{display:none}
+ .local-shap-screen>.d-panel:nth-child(2) .d-note{font-size:15.4px;line-height:1.3}
+}
