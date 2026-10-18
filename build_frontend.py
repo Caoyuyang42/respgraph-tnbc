@@ -32,7 +32,7 @@ def build():
     assets['attention'] = emit('attention-detail.js', 'window.RESPGRAPH_EXPLAIN.attention.models='+dump(heads)+';\n')
     js = ['graph3d.js','mri-data.js','mri-viewer.js','architecture.js','input-schema.js','browser-inference.js','dashboard-charts.js','dashboard-help.js','dashboard.js']
     assets['runtime'] = emit('dashboard-runtime.js', '\n'.join('// SOURCE: '+name+'\n'+(PUBLIC/name).read_text(encoding='utf-8') for name in js))
-    css = ['mri-viewer.css','dashboard.css','dashboard-layout.css']
+    css = ['mri-viewer.css','dashboard.css','dashboard-layout.css','dashboard-type.css']
     assets['styles'] = emit('dashboard-style.css', '\n'.join('/* SOURCE: '+name+' */\n'+(PUBLIC/name).read_text(encoding='utf-8') for name in css))
     emit('asset-map.js', 'window.RESPGRAPH_ASSETS='+dump(assets)+';\n')
     template = (APP/'index.template.html').read_text(encoding='utf-8')
